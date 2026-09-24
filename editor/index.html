@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Launcher Layout Studio</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-brand">
+        <div class="topbar-logo">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect width="28" height="28" rx="7" fill="#2aa88f" opacity="0.18"/>
+            <rect x="5" y="5" width="7" height="7" rx="2" fill="#5fd4bc"/>
+            <rect x="16" y="5" width="7" height="7" rx="2" fill="#5fd4bc" opacity="0.7"/>
+            <rect x="5" y="16" width="7" height="7" rx="2" fill="#5fd4bc" opacity="0.7"/>
+            <rect x="16" y="16" width="7" height="7" rx="2" fill="#5fd4bc" opacity="0.4"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Launcher Layout Studio</h1>
+          <p>Import apps.json and launcher-backup.json, arrange pages, dock, folders, and the home page, then export launcher-backup.json.</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <div class="btn-group">
+          <label class="file-button">
+            <input id="apps-file" type="file" accept=".json,application/json" />
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Load Apps
+            </span>
+          </label>
+          <label class="file-button">
+            <input id="layout-file" type="file" accept=".json,application/json" />
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              Load Layout
+            </span>
+          </label>
+        </div>
+        <div class="btn-group">
+          <button id="export-layout" type="button" class="primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export Layout
+          </button>
+          <button id="reset-layout" type="button" class="ghost">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+            Reset
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="sidebar">
+        <section class="panel">
+          <div class="section-header">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
+            <h2>Grid</h2>
+          </div>
+          <div class="grid-settings">
+            <label>
+              <span>Columns</span>
+              <input id="grid-cols" type="number" min="3" max="8" value="5" />
+            </label>
+            <label>
+              <span>Rows</span>
+              <input id="grid-rows" type="number" min="4" max="8" value="6" />
+            </label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-header">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <h2>Selection Mode</h2>
+          </div>
+          <div id="selection-summary" class="hint">Click, Ctrl-click, or drag-select on both sides. Left list and right grid will highlight linked matches.</div>
+          <div class="placement-actions">
+            <button id="clear-selection" type="button" class="ghost sm">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Clear
+            </button>
+            <button id="delete-selection" type="button" class="danger sm">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+              Delete
+            </button>
+          </div>
+
+          <div class="field-group">
+            <label>
+              <span>Target page</span>
+              <select id="target-page"></select>
+            </label>
+            <label>
+              <span>Home page</span>
+              <select id="home-page"></select>
+            </label>
+          </div>
+
+          <div class="placement-actions col">
+            <button id="move-page" type="button" class="action-btn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              Move / Place To Page
+            </button>
+            <button id="move-dock" type="button" class="action-btn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+              Move / Place To Dock
+            </button>
+            <button id="move-folder" type="button" class="action-btn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+              Move / Add To Folder
+            </button>
+            <button id="set-home-current" type="button" class="ghost sm">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              Set Current As Home
+            </button>
+          </div>
+
+          <div class="field-group">
+            <label>
+              <span>Dock slot</span>
+              <select id="target-dock-slot"></select>
+            </label>
+            <label>
+              <span>Destination folder</span>
+              <select id="target-folder"></select>
+            </label>
+            <label>
+              <span>Folder name</span>
+              <input id="folder-title" type="text" placeholder="Folder name" />
+            </label>
+          </div>
+
+          <div class="placement-actions">
+            <button id="rename-folder" type="button" class="ghost sm">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              Rename Folder
+            </button>
+          </div>
+          <div id="selected-item-details" class="hint"></div>
+        </section>
+      </aside>
+
+      <section class="editor">
+        <div class="panel page-nav-panel">
+          <div class="page-header">
+            <div id="page-tabs" class="page-tabs"></div>
+            <div class="page-actions">
+              <input id="page-title" type="text" placeholder="Page title" />
+              <button id="add-page" type="button" class="primary sm">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Add Page
+              </button>
+              <button id="remove-page" type="button" class="ghost sm">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+                Remove
+              </button>
+              <button id="move-page-left" type="button" class="ghost icon-btn" title="Move Page Left">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <button id="move-page-right" type="button" class="ghost icon-btn" title="Move Page Right">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel board-panel">
+          <div id="board" class="board"></div>
+        </div>
+
+        <section class="panel dock-panel">
+          <div class="panel-header">
+            <div class="section-header">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+              <h2>Dock</h2>
+            </div>
+            <span id="dock-count" class="badge">0 / 5</span>
+          </div>
+          <div id="dock-context" class="hint">Select dock items here, or choose a dock slot above to place apps and folders into the Android dock.</div>
+          <div id="dock-list" class="dock-list"></div>
+        </section>
+
+        <section class="panel app-panel app-panel-wide">
+          <div class="panel-header">
+            <div class="section-header">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+              <h2>Apps</h2>
+            </div>
+            <span id="app-count" class="badge">0</span>
+          </div>
+          <input id="search" type="search" placeholder="Search apps or packages…" />
+          <div id="app-list" class="app-list"></div>
+        </section>
+      </section>
+
+      <aside class="folder-sidebar">
+        <section class="panel app-panel folder-panel">
+          <div class="panel-header">
+            <div class="section-header">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              <h2>Folder Contents</h2>
+            </div>
+            <span id="folder-app-count" class="badge">0</span>
+          </div>
+          <div id="folder-context" class="hint">Click a folder on the board or in the dock to inspect and select the apps inside it.</div>
+          <div id="folder-app-list" class="app-list folder-list"></div>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

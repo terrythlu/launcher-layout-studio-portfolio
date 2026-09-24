@@ -1,0 +1,24 @@
+.gradle/
+**/.gradle/
+.gradle-user-home/
+.gradle-verify-home*/
+local.properties
+**/local.properties
+build/
+**/build/
+.idea/
+*.iml
+captures/
+*.apk
+dist/
+out/
+*.log
+screenshots/
+launcher-*.png
+outputs/
+work/
+!docs/images/*.png
+android/gradle/launcher-truststore.jks
+android/gradle/avast-root.cer
+editor - 複製/
+query
