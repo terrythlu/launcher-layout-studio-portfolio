@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "exportedAt": "2026-09-26T00:00:00Z",
+  "grid": { "cols": 5, "rows": 6 },
+  "dock": [
+    { "id": "dock-browser", "type": "app", "x": 0, "y": 0, "spanX": 1, "spanY": 1, "packageName": "com.example.browser", "activityName": "com.example.browser.MainActivity" },
+    { "id": "dock-messages", "type": "app", "x": 1, "y": 0, "spanX": 1, "spanY": 1, "packageName": "com.example.messages", "activityName": "com.example.messages.MainActivity" },
+    { "id": "dock-camera", "type": "app", "x": 2, "y": 0, "spanX": 1, "spanY": 1, "packageName": "com.example.camera", "activityName": "com.example.camera.MainActivity" },
+    { "id": "dock-photos", "type": "app", "x": 3, "y": 0, "spanX": 1, "spanY": 1, "packageName": "com.example.photos", "activityName": "com.example.photos.MainActivity" }
+  ],
+  "pages": [
+    {
+      "index": 0,
+      "title": "Home",
+      "items": [
+        { "id": "home-calendar", "type": "app", "x": 0, "y": 0, "spanX": 1, "spanY": 1, "packageName": "com.example.calendar", "activityName": "com.example.calendar.MainActivity" },
+        { "id": "home-mail", "type": "app", "x": 1, "y": 0, "spanX": 1, "spanY": 1, "packageName": "com.example.mail", "activityName": "com.example.mail.MainActivity" },
+        { "id": "home-work", "type": "folder", "x": 2, "y": 0, "spanX": 1, "spanY": 1, "title": "Work", "appRefs": [
+          { "packageName": "com.example.files", "activityName": "com.example.files.MainActivity" },
+          { "packageName": "com.example.notes", "activityName": "com.example.notes.MainActivity" }
+        ] },
+        { "id": "home-maps", "type": "app", "x": 3, "y": 0, "spanX": 1, "spanY": 1, "packageName": "com.example.maps", "activityName": "com.example.maps.MainActivity" },
+        { "id": "home-music", "type": "app", "x": 4, "y": 0, "spanX": 1, "spanY": 1, "packageName": "com.example.music", "activityName": "com.example.music.MainActivity" }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "Utilities",
+      "items": [
+        { "id": "utilities-contacts", "type": "app", "x": 0, "y": 0, "spanX": 1, "spanY": 1, "packageName": "com.example.contacts", "activityName": "com.example.contacts.MainActivity" },
+        { "id": "utilities-settings", "type": "app", "x": 1, "y": 0, "spanX": 1, "spanY": 1, "packageName": "com.example.settings", "activityName": "com.example.settings.MainActivity" }
+      ]
+    }
+  ],
+  "launchHistory": [],
+  "homePageIndex": 0,
+  "wallpaperPath": null
+}

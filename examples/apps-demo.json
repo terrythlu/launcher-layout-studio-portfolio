@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-09-26T00:00:00Z",
+  "apps": [
+    { "label": "Browser", "packageName": "com.example.browser", "activityName": "com.example.browser.MainActivity" },
+    { "label": "Calendar", "packageName": "com.example.calendar", "activityName": "com.example.calendar.MainActivity" },
+    { "label": "Camera", "packageName": "com.example.camera", "activityName": "com.example.camera.MainActivity" },
+    { "label": "Contacts", "packageName": "com.example.contacts", "activityName": "com.example.contacts.MainActivity" },
+    { "label": "Files", "packageName": "com.example.files", "activityName": "com.example.files.MainActivity" },
+    { "label": "Mail", "packageName": "com.example.mail", "activityName": "com.example.mail.MainActivity" },
+    { "label": "Maps", "packageName": "com.example.maps", "activityName": "com.example.maps.MainActivity" },
+    { "label": "Messages", "packageName": "com.example.messages", "activityName": "com.example.messages.MainActivity" },
+    { "label": "Music", "packageName": "com.example.music", "activityName": "com.example.music.MainActivity" },
+    { "label": "Notes", "packageName": "com.example.notes", "activityName": "com.example.notes.MainActivity" },
+    { "label": "Photos", "packageName": "com.example.photos", "activityName": "com.example.photos.MainActivity" },
+    { "label": "Settings", "packageName": "com.example.settings", "activityName": "com.example.settings.MainActivity" }
+  ]
+}

@@ -11,6 +11,13 @@ The Android app exports the installed app catalog, while the local desktop edito
 
 > The screenshots above use emulator/test data only. They do not contain a personal device backup.
 
+### Windows layout editor
+
+![The Windows browser editor with a sample home page, dock, and app catalog](docs/images/launcher-editor-example.png)
+
+> [!TIP]
+> Arrange pages, folders, and the dock on Windows, export one JSON file, and import it on the phone. This can save a lot of manual setup when configuring a new device.
+
 ## Features
 
 - Kotlin and Jetpack Compose Android launcher
@@ -59,11 +66,14 @@ cd android
 
 ### Desktop editor
 
-1. Open editor/index.html in a browser.
-2. Load the exported apps.json.
-3. Arrange apps, folders, pages, and dock items.
-4. Export launcher-backup.json.
-5. Import the layout from the Android app.
+1. On the current phone, use Launcher Layout Studio to export the installed app catalog as `apps.json`. Export the existing layout too if you want to continue editing it.
+2. Transfer those files to a Windows PC and open `editor/index.html` in a browser.
+3. Choose **Load Apps** and select `apps.json`; optionally choose **Load Layout** to start from an existing `launcher-backup.json`.
+4. Arrange apps, folders, pages, and dock items with drag and drop. Search the catalog, adjust the grid, and select the home page.
+5. Choose **Export Layout** to download an updated `launcher-backup.json`.
+6. Transfer that file to the new phone and import it in Launcher Layout Studio.
+
+The editor runs locally in the browser. It does not upload the app catalog or layout. The sample files in `examples/` use fictional `com.example.*` packages for the screenshot and UI demo; use an actual phone export for a layout you plan to restore. The destination phone also needs the relevant apps installed, and some widgets or shortcuts may need additional setup.
 
 ## Data format
 
@@ -79,7 +89,7 @@ The exported files may contain:
 
 Treat real exports as personal device data. Do not commit them, attach them to issues, or use them as public examples.
 
-The README screenshots and public examples should use emulator-only data.
+The README screenshots and public examples use emulator-only or synthetic data. Do not commit an actual phone export.
 
 ## Privacy and security
 
@@ -96,7 +106,8 @@ The README screenshots and public examples should use emulator-only data.
 android/          Kotlin + Compose launcher
 editor/           Local browser layout editor
 design/           Source design assets
-docs/images/      Public-safe emulator screenshots
+examples/         Synthetic app catalog and launcher backup for the editor demo
+docs/images/      Public-safe app and editor screenshots
 ~~~
 
 ## Limitations
